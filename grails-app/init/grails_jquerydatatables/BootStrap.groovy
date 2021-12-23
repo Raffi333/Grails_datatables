@@ -2,15 +2,25 @@ package grails_jquerydatatables
 
 
 import groovy.json.JsonSlurper
+import org.grails.io.support.ClassPathResource
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 
 class BootStrap {
 
-    def init = { servletContext ->
+    private final static LOGGER = LoggerFactory.getLogger(BootStrap.class)
 
+    def init = { servletContext ->
         if (Country.list().size() == 0) {
 
             try {
-                File inputFile = new File("/home/raffi/IdeaProjects/Grails_JquerydataTables/grails-app/assets/package.json")
+                ClassPathResource classPathResource = new ClassPathResource("data.json");
+
+//              File inputFile = new File(this.class.classLoader.getResource('data.json').getFile())
+                File inputFile = classPathResource.getFile()
+
+
                 def InputJSON = new JsonSlurper().parseText(inputFile.text)
 
                 InputJSON.each {
@@ -23,7 +33,7 @@ class BootStrap {
                 }
             }
             catch (Exception e) {
-                e.getCause()
+                LOGGER.error(e.message)
             }
 
         }
