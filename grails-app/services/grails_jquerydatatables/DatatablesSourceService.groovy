@@ -3,6 +3,7 @@ package grails_jquerydatatables
 import grails.converters.JSON
 import grails.core.GrailsApplication
 import grails.core.support.GrailsApplicationAware
+import org.apache.commons.lang.math.NumberUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -28,7 +29,7 @@ class DatatablesSourceService implements GrailsApplicationAware {
 
                 if (params["bSearchable_${idx}"] == 'true') {
                     if (prop == "id") {
-                        if (org.apache.commons.lang.math.NumberUtils.isNumber(params.sSearch))
+                        if (NumberUtils.isNumber(params.sSearch))
                             filters << "dt.${prop} = ${params.sSearch}"
                     } else {
                         filters << "dt.${prop} like :filter"
