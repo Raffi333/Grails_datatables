@@ -16,14 +16,6 @@ class DatatablesSourceService implements GrailsApplicationAware {
         Class clazz = entityName
         String classSimpleName = entityName.getSimpleName()
 
-        println clazz.getSimpleName()
-
-//        Class clazz = entityName
-
-//        println TekEvent.class
-//        println "//////|\\\\\\"
-//        println clazz
-//        println TekEvent.class == clazz
 
         def filters = []
         propertiesToRender.eachWithIndex { prop, idx ->
@@ -113,7 +105,6 @@ class DatatablesSourceService implements GrailsApplicationAware {
             dataToRender.aaData << data
         }
 
-//        println query
 
         LOGGER.info("Execution of dataTablesSource method took {} Ms", System.currentTimeMillis() - timer)
         return dataToRender as JSON

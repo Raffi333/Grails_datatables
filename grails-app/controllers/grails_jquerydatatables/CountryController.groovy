@@ -10,9 +10,9 @@ class CountryController {
     }
 
     def dataTablesRenderer() {
-        def propertiesToRender = ["id", "name", "capital", "flag", "coatOfArms"]
+        List<String> propertiesToRender = ["id", "name", "capital", "flag", "coatOfArms"]
         def entityName = Country.class
 
-        render datatablesSourceService.dataTablesSource(propertiesToRender, entityName, params)
+        render(datatablesSourceService.dataTablesSource(propertiesToRender, entityName, params))
     }
 }
