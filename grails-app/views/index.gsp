@@ -12,7 +12,9 @@
 <script>
 
     $(document).ready(function () {
-        $('#dt').DataTable({
+        let dataa;
+
+        let table = $('#dt').DataTable({
             sScrollY: "75%",
             sScrollX: "100%",
             bProcessing: true,
@@ -23,6 +25,9 @@
             sPaginationType: "full_numbers",
             aLengthMenu: [5, 10, 25, 50, 100, 200],
             iDisplayLength: 10,
+            // paging: false,
+            // 'sDom': 't',
+            // sDom:"pltif",
             aoColumnDefs: [
                 {
                     createdCell: function (td, cellData, rowData, row, col) {
@@ -47,9 +52,19 @@
                     bSortable: false,
                     aTargets: [4]
                 },
-            ]
+            ],
+            drawCallback: function (data) {
+                console.log(data.json);
+                console.log("okey")
+            },
         });
+
+        // table.on('draw', function () {
+        //
+        // });
+
     });
+
 
 
 </script>
@@ -63,10 +78,10 @@
             <th>capital</th>
             <th>flag</th>
             <th>coatOfArms</th>
-
         </tr>
         </thead>
     </table>
+
 </div>
 
 </body>

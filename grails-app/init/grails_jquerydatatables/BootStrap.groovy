@@ -26,7 +26,7 @@ class BootStrap {
                 File inputFile = classPathResource.getFile()
 
                 //create json object
-                def inputJSON = new JsonSlurper().parseText(inputFile.get)
+                def inputJSON = new JsonSlurper().parseText(inputFile.text)
                 inputJSON.each {
                     String name = it?.name?.common
                     String coatOfArms = it?.coatOfArms?.svg
